@@ -71,22 +71,16 @@ const TVCanvas = () => {
     
     const render = () => {
       context.clearRect(0, 0, canvas.width, canvas.height); // Clear the canvas before each render
-
+    
       // Draw the background color
       context.fillStyle = "#150DF7"; // Blue color
       context.fillRect(0, 0, canvas.width, canvas.height);
-
+    
       // Draw the noise
       context.putImageData(samples[Math.floor(sampleIndex)], 0, 0);
       sampleIndex += 20 / FPS;
       if (sampleIndex >= samples.length) sampleIndex = 0;
-
-      // Draw the "Peringatan Darurat" text
-      context.font = "bold 35px Arial";
-      context.fillStyle = "#ffffff";
-      context.textAlign = "center";
-      context.fillText("Peringatan Darurat", canvas.width / 2, 80);
-
+    
       // Draw the image if it is loaded
       if (imageLoaded && imageRef.current) {
         const img = imageRef.current;
@@ -95,10 +89,23 @@ const TVCanvas = () => {
         const x = (canvas.width - imgWidth) / 2;
         const y = (canvas.height - imgHeight) / 2;
         context.drawImage(img, x, y, imgWidth, imgHeight);
-      }
 
+
+      // Draw the "Peringatan Darurat" text
+      context.font = "bold 35px Arial";
+      context.fillStyle = "#ffffff";
+      context.textAlign = "center";
+      context.fillText("Peringatan Darurat", canvas.width / 2, 80);
+    
+        // Add text after the image
+        context.font = "bold 30px Arial";
+        context.fillStyle = "#ffffff";
+        context.fillText("Untuk Seluruh", canvas.width / 2, y + imgHeight + 40);
+        context.fillText("Masyarakat Indonesia", canvas.width / 2, y + imgHeight + 80);
+      }
+    
       requestAnimationFrame(render);
-    };
+    };    
 
     window.addEventListener("resize", handleResize);
     handleResize();
