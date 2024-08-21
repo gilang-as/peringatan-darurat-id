@@ -91,18 +91,18 @@ const TVCanvas = () => {
         context.drawImage(img, x, y, imgWidth, imgHeight);
 
 
-      // Add text in Top center
+      // Add text on Top Image
       context.font = "bold 30px Arial";
       context.fillStyle = "#ffffff";
       context.textAlign = "center";
-      context.fillText("Peringatan Darurat", canvas.width / 2, 80);
+      context.fillText("Peringatan Darurat", canvas.width / 2,  ((canvas.height - imgHeight) / 2) - 40) ;
     
         // Add text in bottom center
         context.font = "bold 30px Arial";
         context.fillStyle = "#ffffff";
         context.textAlign = "center";
-        context.fillText("Untuk Seluruh", canvas.width / 2, canvas.height - 80);
-        context.fillText("Masyarakat Indonesia", canvas.width / 2, canvas.height - 40);
+        context.fillText("Untuk Seluruh", canvas.width / 2, ((canvas.height + imgHeight) / 2) + 80);
+        context.fillText("Masyarakat Indonesia", canvas.width / 2, ((canvas.height + imgHeight) / 2) + 120);
 
       }
     
