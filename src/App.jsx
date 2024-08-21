@@ -14,6 +14,7 @@ const TVCanvas = () => {
   let sampleIndex = 0;
   let scanOffsetY = 0;
   let scanSize = 0;
+  const topMinus = 80
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -80,14 +81,15 @@ const TVCanvas = () => {
       context.putImageData(samples[Math.floor(sampleIndex)], 0, 0);
       sampleIndex += 20 / FPS;
       if (sampleIndex >= samples.length) sampleIndex = 0;
-    
+  
+
       // Draw the image if it is loaded
       if (imageLoaded && imageRef.current) {
         const img = imageRef.current;
         const imgWidth = img.width - (1080 * 2);
         const imgHeight = img.height - (1080 * 2);
-        const x = (canvas.width - imgWidth) / 2;
-        const y = (canvas.height - imgHeight) / 2;
+        const x = ((canvas.width - imgWidth) / 2);
+        const y = ((canvas.height - imgHeight) / 2) - topMinus;
         context.drawImage(img, x, y, imgWidth, imgHeight);
 
 
@@ -95,14 +97,14 @@ const TVCanvas = () => {
       context.font = "bold 30px Arial";
       context.fillStyle = "#ffffff";
       context.textAlign = "center";
-      context.fillText("Peringatan Darurat", canvas.width / 2,  ((canvas.height - imgHeight) / 2) - 40) ;
+      context.fillText("Peringatan Darurat", canvas.width / 2,  ((canvas.height - imgHeight) / 2) - 40 - topMinus) ;
     
         // Add text in bottom center
         context.font = "bold 30px Arial";
         context.fillStyle = "#ffffff";
         context.textAlign = "center";
-        context.fillText("Untuk Seluruh", canvas.width / 2, ((canvas.height + imgHeight) / 2) + 80);
-        context.fillText("Masyarakat Indonesia", canvas.width / 2, ((canvas.height + imgHeight) / 2) + 120);
+        context.fillText("Untuk Seluruh", canvas.width / 2, ((canvas.height + imgHeight) / 2) + 80 - topMinus);
+        context.fillText("Masyarakat Indonesia", canvas.width / 2, ((canvas.height + imgHeight) / 2) + 120 - topMinus);
 
       }
     
